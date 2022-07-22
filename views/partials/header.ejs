@@ -9,5 +9,10 @@
 </head>
 <body>
     <nav>
-        <a href="/">HOME</a>
+        <a href="/">HOME</a>&nbsp;|
+        <% if (user) { %>
+            <a href="/logout">LOG OUT</a>
+        <% } else { %>
+            <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a> <!-- see class login-->
+        <% } %>    
     </nav>

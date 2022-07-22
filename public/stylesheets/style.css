@@ -5,4 +5,17 @@ body {
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+.login {
+  display: inline;
+  height: 16px;
+}
+
+.login img {
+  height: 13px;
+  position: relative;
+  top: 1px;
+  left: -2px;
 }
