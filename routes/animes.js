@@ -2,12 +2,11 @@ var express = require('express');
 var router = express.Router();
 const passport = require('passport');
 
+const animesCtrl = require('../controllers/animes');
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {
-     title: 'raMEN',
-  });
-});
+router.get('/', animesCtrl.index);
+
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate(
   'google',

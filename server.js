@@ -13,7 +13,7 @@ require('./config/database');
 // new code below
 require('./config/passport');
 
-var indexRouter = require('./routes/index');
+var animesRouter = require('./routes/animes');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -41,7 +41,7 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
-app.use('/', indexRouter);
+app.use('/', animesRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
