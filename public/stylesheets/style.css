@@ -1,11 +1,39 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ece5d6;
+  height: 100vh;
+  margin: 0;
+  
 }
 
+nav {
+  background-color: #eece89;
+  padding: 20px;
+  height: 20px;
+}
+
+nav > a[href="/"] {
+  float: left;
+}
+
+nav > a[href="/auth/google"], nav > a[href="/logout"] {
+  float: right;
+}
+
+
 a {
-  color: #00B7FF;
+  color: white;
+  text-shadow: -1px 2px 0.2em black, 1px 2px 0.2em white;
   text-decoration: none;
+  text-transform: capitalize;
+}
+
+a:hover {
+  color: #FFFFFF;
+}
+
+div.home {
+  text-align: center;
 }
 
 .login {
@@ -16,6 +44,6 @@ a {
 .login img {
   height: 13px;
   position: relative;
-  top: 1px;
+  top: 2px;
   left: -2px;
 }
