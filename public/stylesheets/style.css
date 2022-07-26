@@ -44,6 +44,30 @@ div.home {
   text-align: center;
 }
 
+div.home > img {
+  width: 50vh;
+  height: 100%;
+}
+
+div.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  float: left;
+  overflow-x: scroll;
+}
+
+div.list > div {
+  width: 200px;
+  height: 400px;
+  margin: 20px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+}
+
 .login {
   display: inline;
   height: 16px;
