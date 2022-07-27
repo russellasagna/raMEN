@@ -1,20 +1,45 @@
 const Anime = require('../models/anime');
 const User = require('../models/user');
 
+require('dotenv').config();
+
+// The fetch variable will be a function that behaves like fetch in the browser
+const fetch = require('node-fetch');
+const rootURL = "https://api.myanimelist.net/v2";
+
 module.exports = {
     index,
 };
 
-function index(req, res) {
-    Anime.find({}, function (err, animes) {
-        // req.body.user = req.user._id;
-        // req.body.userName = req.user.name;
-        // req.body.userAvatar = req.user.avatar;
-        // animes.push(req.body);
-        res.render('animes/home', { 
-            title: 'raMEN', 
-            image: 'images/raMEN.png',
-            animes
+function index(req, res, next) {
+    // fetch data
+    // const username = req.query.username;
+    // if (!username) return res.render('index', {userData: null});
+    const options = {
+        headers: {
+            "X-MAL-CLIENT-ID": process.env.MAL_CLIENT_ID
+        }
+    }
+    let animeData;
+    fetch(`${rootURL}`, options)
+        .then(res => res.json())
+        .then(animes => {
+            animeData = animes;
+            return fetch("https://api.myanimelist.net/v2/anime?q=one&limit=4", options);
+        })
+        .then(res => res.json())
+        .then(animes => {
+            animeData.animes = animes;
+            // render view
+            res.render('animes/home', {
+                title: 'raMEN',
+                image: 'images/raMEN.png',
+                animeData
+            });
+            // res.render('animes/home', { animeData });
         });
-    });
+    
+    // Anime.find({}, function (err, animes) {    });
+    
+
 }

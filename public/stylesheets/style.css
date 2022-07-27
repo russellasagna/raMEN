@@ -20,7 +20,9 @@ nav > a[href="/"] {
   float: left;
 }
 
-nav > a[href="/auth/google"], nav > a[href="/logout"] {
+nav > a[href="/auth/google"], 
+nav > a[href="/logout"],
+nav > a[href="/users"] {
   float: right;
 }
 
