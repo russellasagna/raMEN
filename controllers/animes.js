@@ -25,11 +25,11 @@ function index(req, res, next) {
         .then(res => res.json())
         .then(animes => {
             animeData = animes;
-            return fetch("https://api.myanimelist.net/v2/anime?q=one&limit=4", options);
+            return fetch("https://api.myanimelist.net/v2/anime?q=one&limit=20", options);
         })
         .then(res => res.json())
         .then(animes => {
-            animeData.animes = animes;
+            animeData.animes = animes.data;
             // render view
             res.render('animes/home', {
                 title: 'raMEN',
