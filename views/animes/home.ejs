@@ -7,14 +7,17 @@
         <!-- <%= JSON.stringify(animeData.animes) %> -->
         <br>
 
+        
 
         <form action="/" method="GET">
-            <input type="text" name="keyword" placeholder="Search...">
+            <input type="text" name="keyword" placeholder="Search..."
+                pattern="{1,}" required>
             <br>
             <button type="submit"><img src="<%= search_img %>"></button>
         </form>
         </div>
         
+
         
         <% for (let i = 0; i < 1; i++) { %>
             <% if (keyword) { %>
@@ -22,7 +25,7 @@
             <% } else { %>
                 <h1>Random</h1>
             <% } %>
-            <div class="list">
+            <div id="results" class="list">
                 <% animeData.animes.forEach(function(a) { %>
                     <a href="">
                         <img src="<%= a.node.main_picture.large %>">

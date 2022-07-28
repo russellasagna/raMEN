@@ -107,7 +107,7 @@ div.list {
 div.list > a > img {
   width: 50vh;
   height: 50vh;
-  /* margin: 20px; */
+  margin: 0 5vh;
 
   /* text-align: center; */
   /* vertical-align: middle; */

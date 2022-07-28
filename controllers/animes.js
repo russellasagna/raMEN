@@ -25,7 +25,7 @@ function index(req, res, next) {
         .then(res => res.json())
         .then(animes => {
             animeData = animes;
-            return fetch(`https://api.myanimelist.net/v2/anime?q=${keyword}&limit=10`, options);
+            return fetch(`${rootURL}/anime?q=${keyword}&limit=50`, options);
         })
         .then(res => res.json())
         .then(animes => {
