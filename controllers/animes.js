@@ -13,7 +13,7 @@ module.exports = {
 
 function index(req, res, next) {
     // fetch data
-    // const username = req.query.username;
+    const keyword = req.query.keyword;
     // if (!username) return res.render('index', {userData: null});
     const options = {
         headers: {
@@ -25,7 +25,7 @@ function index(req, res, next) {
         .then(res => res.json())
         .then(animes => {
             animeData = animes;
-            return fetch("https://api.myanimelist.net/v2/anime?q=one&limit=20", options);
+            return fetch(`https://api.myanimelist.net/v2/anime?q=${keyword}&limit=30`, options);
         })
         .then(res => res.json())
         .then(animes => {
@@ -34,6 +34,7 @@ function index(req, res, next) {
             res.render('animes/home', {
                 title: 'raMEN',
                 image: 'images/raMEN.png',
+                search: "",
                 animeData
             });
             // res.render('animes/home', { animeData });

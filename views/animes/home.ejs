@@ -4,7 +4,7 @@
     <div class="home">
         <img src="<%= image %>">
     </div>
-    <div>
+    <!-- <div>
         <%= JSON.stringify(animeData.animes) %>
     </div>
     <% for (let i = 0; i < 4; i++) { %>
@@ -15,6 +15,20 @@
         <% } %>
     </div>
     <% } %>
-    </main>
-
+    </main> -->
+    <!-- <%= JSON.stringify(animeData.animes) %> -->
+    <br>
+    <form action="/" method="GET">
+        <input type="text" name="keyword" placeholder="Enter an anime keyword!">
+        <button type="submit">Search</button>
+    </form>
+    </div>
+    <!-- <h1>(Filter)</h1> -->
+    <div class="list">
+        <% animeData.animes.forEach(function(a) { %>
+        <div>
+            <img src="<%= a.node.main_picture.large %>">
+        </div>
+        <% }); %>
+    </div>
 <%- include('../partials/footer.ejs') %>
