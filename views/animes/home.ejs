@@ -11,7 +11,7 @@
         <form action="/" method="GET">
             <input type="text" name="keyword" autocomplete="off" 
             placeholder="Search..." spellcheck="false"
-            pattern="{1,}" required>
+            pattern=".*[^ ].*" required>
             <br>
             <button type="submit"><img src="<%= search_img %>"></button>
         </form>
@@ -26,17 +26,30 @@
             <% } %>
             <div id="results" class="list">
                 <% animeData.animes.forEach(function(a) { %>
-                    <a href="">
+                    <!-- <a href="">
                         <p><%= a.node.title %></p>
                         <img src="<%= a.node.main_picture.large %>">
-                    </a>
+                    </a> -->
+                    <div>
+                        <p><%= a.node.title %></p>
+                        <form action="/anime" method="POST">
+                            <!-- Hidden forms! -->
+                            <input type="hidden" name="title" value="<%= a.node.title %>">
+                            <input type="hidden" name="titleID" value="<%= a.node.id %>">
+                            <input type="hidden" name="large" value="<%= a.node.main_picture.large %>">
+                            <input type="hidden" name="medium" value="<%= a.node.main_picture.medium %>">
+                            <button type="submit">
+                                <img src="<%= a.node.main_picture.large %>">
+                            </button>
+                        </form>
+                    </div>
                 <% }); %>
             </div>
         <% } %>
 
         <div style="color: black; font-size: 1vh">
             JSON Stringify:<br>
-            <%= JSON.stringify(animeData.animes) %>
+            <%= JSON.stringify(animeData.animes.length) %>
         </div>
     </main>
 

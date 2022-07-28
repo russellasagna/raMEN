@@ -38,6 +38,7 @@ a:hover {
 
 main { /* landing page container */
   overflow-x: hidden;
+  text-align: center;
 }
 
 main > h1 { /* landing page container */
@@ -111,12 +112,20 @@ div.list {
   padding-bottom: 5vh;
 }
 
-div.list > a > p {
+div.list > div > p {
   text-align: center;
   font-size: 2vh;
+  color: white;
+  position: relative;
+  user-select: none;
 }
 
-div.list > a > img {
+div.list > div > form > button {
+  background: none;
+  border: none;
+}
+
+div.list > div > form > button > img {
   width: 50vh;
   height: 50vh;
   margin: 0 5vh;
@@ -126,8 +135,8 @@ div.list > a > img {
   background-color: white;
 }
 
-div.list > a > img:hover {
-  box-shadow: 0px 0px 5vh;
+div.list > div > form > button > img:hover {
+  box-shadow: 0px 0px 5vh white;
 }
 
 .login {
@@ -140,4 +149,8 @@ div.list > a > img:hover {
   position: relative;
   top: 2px;
   left: -2px;
+}
+
+div.info {
+  display: flex;
 }

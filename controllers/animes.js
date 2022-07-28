@@ -9,6 +9,7 @@ const rootURL = "https://api.myanimelist.net/v2";
 
 module.exports = {
     index,
+    show,
 };
 
 function index(req, res, next) {
@@ -39,4 +40,16 @@ function index(req, res, next) {
                 animeData
             });
         });
+}
+
+function show(req, res) {
+    // Originally planned to send anime data to MongoDB then pull from it using a Model
+
+    var animeModel = new Anime(req.body);
+    res.render('animes/anime', {
+        anime: animeModel.anime,
+        animeID: animeModel.animeID,
+        animeLarge: animeModel.large,
+        animeMedium: animeModel.medium,
+    });  
 }

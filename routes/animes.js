@@ -4,8 +4,12 @@ const passport = require('passport');
 
 const animesCtrl = require('../controllers/animes');
 
-/* GET home page. */
+// All routes "start with" / (from server.js)
+
+/* GET animes/home (index functionality) */
 router.get('/', animesCtrl.index);
+/* POST animes/anime (show functionality) */
+router.post('/anime', animesCtrl.show);
 
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate(
