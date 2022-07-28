@@ -25,7 +25,7 @@ function index(req, res, next) {
         .then(res => res.json())
         .then(animes => {
             animeData = animes;
-            return fetch(`https://api.myanimelist.net/v2/anime?q=${keyword}&limit=30`, options);
+            return fetch(`https://api.myanimelist.net/v2/anime?q=${keyword}&limit=10`, options);
         })
         .then(res => res.json())
         .then(animes => {
@@ -34,13 +34,9 @@ function index(req, res, next) {
             res.render('animes/home', {
                 title: 'raMEN',
                 image: 'images/raMEN.png',
-                search: "",
+                search_img: 'images/magnifying_glass.svg',
+                keyword: keyword,
                 animeData
             });
-            // res.render('animes/home', { animeData });
         });
-    
-    // Anime.find({}, function (err, animes) {    });
-    
-
 }

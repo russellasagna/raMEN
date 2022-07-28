@@ -1,34 +1,35 @@
 <%- include('../partials/header.ejs') %>
 
     <main>
-    <div class="home">
-        <img src="<%= image %>">
-    </div>
-    <!-- <div>
-        <%= JSON.stringify(animeData.animes) %>
-    </div>
-    <% for (let i = 0; i < 4; i++) { %>
-    <div class="list">
-        <h1>(Filter)</h1>
-        <% for (let i = 0; i < 20; i++) { %>
-        <div></div>
-        <% } %>
-    </div>
-    <% } %>
-    </main> -->
-    <!-- <%= JSON.stringify(animeData.animes) %> -->
-    <br>
-    <form action="/" method="GET">
-        <input type="text" name="keyword" placeholder="Enter an anime keyword!">
-        <button type="submit">Search</button>
-    </form>
-    </div>
-    <!-- <h1>(Filter)</h1> -->
-    <div class="list">
-        <% animeData.animes.forEach(function(a) { %>
-        <div>
-            <img src="<%= a.node.main_picture.large %>">
+        <div class="home">
+            <img src="<%= image %>">
         </div>
-        <% }); %>
-    </div>
+        <!-- <%= JSON.stringify(animeData.animes) %> -->
+        <br>
+
+
+        <form action="/" method="GET">
+            <input type="text" name="keyword" placeholder="Search...">
+            <br>
+            <button type="submit"><img src="<%= search_img %>"></button>
+        </form>
+        </div>
+        
+        
+        <% for (let i = 0; i < 1; i++) { %>
+            <% if (keyword) { %>
+                <h1>Search results for "<%= keyword %>"</h1>
+            <% } else { %>
+                <h1>Random</h1>
+            <% } %>
+            <div class="list">
+                <% animeData.animes.forEach(function(a) { %>
+                    <a href="">
+                        <img src="<%= a.node.main_picture.large %>">
+                    </a>
+                <% }); %>
+            </div>
+        <% } %>
+    </main>
+
 <%- include('../partials/footer.ejs') %>
