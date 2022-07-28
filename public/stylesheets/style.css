@@ -1,6 +1,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #ece5d6;
+  /* background-color: black; */
   margin: 0;
 }
 
@@ -26,13 +27,13 @@ nav > a[href="/users"] {
 
 a {
   color: white;
-  text-shadow: -1px 2px 0.2em black, 1px 2px 0.2em white;
+  text-shadow: -1px 2px 0.2em black, -2px 0px 0.1em black;
   text-decoration: none;
   text-transform: capitalize;
 }
 
 a:hover {
-  text-shadow: -1px 2px 0.2em black, -2px 0px 0.1em black;
+  text-shadow: -1px 2px 0.2em black, 1px 2px 0.2em white;
 }
 
 main { /* landing page container */
@@ -40,9 +41,12 @@ main { /* landing page container */
 }
 
 main > h1 { /* landing page container */
-  position: relative;
-  left: 2vh;
   font-size: 3vh;
+  margin: 0;
+  padding-left: 2.5vh;
+  padding-top: 1vh;
+  background-color: black;
+  color: white;
 }
 
 div.home {
@@ -63,6 +67,7 @@ form[action="/"] {
   top: 4vh;
   right: 0.2vh;
   text-align: center;
+  margin-bottom: 2vh;
 }
 
 form[action="/"] > input {
@@ -102,16 +107,27 @@ div.list {
   align-items: center;
 
   overflow-x: scroll;
+  background-color: black;
+  padding-bottom: 5vh;
+}
+
+div.list > a > p {
+  text-align: center;
+  font-size: 2vh;
 }
 
 div.list > a > img {
   width: 50vh;
   height: 50vh;
   margin: 0 5vh;
-
+  
   /* text-align: center; */
   /* vertical-align: middle; */
   background-color: white;
+}
+
+div.list > a > img:hover {
+  box-shadow: 0px 0px 5vh;
 }
 
 .login {
