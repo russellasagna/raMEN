@@ -7,11 +7,11 @@ const isLoggedIn = require('../config/auth');
 
 // GET /animes (index functionality)
 router.get('/', animesCtrl.index);
+// GET /animes/new (new functionality)
+router.get('/new', isLoggedIn, animesCtrl.new);
 // GET /animes/:id (show functionality)
 router.get('/:id', animesCtrl.show);
-// GET /animes/new (new functionality)
-// router.get('/new', /*isLoggedIn,*/ animesCtrl.new);
 // POST /animes (create functionality)
-router.post('/', /*isLoggedIn,*/ animesCtrl.create);
+router.post('/', isLoggedIn, animesCtrl.create);
 
 module.exports = router;

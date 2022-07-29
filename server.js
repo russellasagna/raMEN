@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var session = require('express-session');
-var passport = require('passport');
-var methodOverride = require('method-override');
+const session = require('express-session');
+const passport = require('passport');
+const methodOverride = require('method-override');
 
 // Load the secrets in the .env module
 require('dotenv').config();
@@ -17,7 +17,7 @@ require('./config/passport');
 var indexRouter = require('./routes/index');
 var animesRouter = require('./routes/animes');
 var commentsRouter = require('./routes/comments');
-// var usersRouter = require('./routes/users');
+var charactersRouter = require('./routes/characters');
 
 var app = express();
 
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
 app.use(session({
-  secret: process.env.SECRET,
+  secret: process.env.GOOGLE_SECRET,
   resave: false,
   saveUninitialized: true
 }));
@@ -45,7 +45,7 @@ app.use(passport.session());
 // to the locals object so that we can access
 // user within EVERY template we render without
 // having to pass user: req.user from the controller
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
 });
@@ -55,11 +55,11 @@ const isLoggedIn = require('./config/auth');
 
 app.use('/', indexRouter);
 app.use('/animes', animesRouter);
-// app.use('/users', usersRouter);
 // The starts with path for a related-resource,
 // comments, varies, thus we cannot specify
 // a starts with path
 app.use('/', isLoggedIn, commentsRouter);
+app.use('/', isLoggedIn, charactersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

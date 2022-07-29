@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 // optional shortcut variable
 const Schema = mongoose.Schema;
 
-// Comments (subdocs) will be embedded inside of
-// Anime docs
+// Reviews (subdocs) will be embedded inside of
+// movie docs
 const commentSchema = new Schema({
   content: {
     type: String,
@@ -24,15 +24,27 @@ const commentSchema = new Schema({
 });
 
 const animeSchema = new Schema({
-    anime: { type: String },
-    animeID: { type: String },
-    large: { type: String },
-    medium: { type: String },
-    // The ref property informs Mongoose which Module
-    // to use when populating the cast property
-    // cast: [{type: Schema.Types.ObjectId, ref: 'Performer'}],
-    comments: [commentSchema],
-    favorites: [],
+  title: String,
+  releaseYear: {
+    type: Number,
+    // releaseYear must not exist
+    // on req.body
+    default: function() {
+      // whatever is returned is assigned
+      // to releaseYear
+      return new Date().getFullYear();
+    },
+    min: 1927
+  },
+  mpaaRating: {
+    type: String,
+    enum: ['G', 'PG', 'PG-13', 'R']
+  },
+  // The ref property informs Mongoose which Module
+  // to use when populating the cast property
+  cast: [{type: Schema.Types.ObjectId, ref: 'Character'}],
+  nowShowing: Boolean,
+  comments: [commentSchema]
 }, {
   timestamps: true
 });

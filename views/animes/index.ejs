@@ -1,61 +1,25 @@
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/header') %>
+  <table id="list">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Aired</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% animes.forEach(function(a) { %>
+        <tr>
+          <td>
+            <%= a.title %>
+          </td>
+          <td>
+            <%= a.releaseYear %>
+          </td>
+          <td><a href="/animes/<%= a._id %>">Details</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
 
-    <main>
-        <div class="home">
-            <img src="<%= image %>">
-        </div>
-        
-        <% if (!user) { %>
-        <br><br>
-        <section>
-            Welcome to raMEN!<br>
-            Use the search bar to find your favorite anime!<br>
-            <br><strong>Log in to save anime to your Favorites!</strong><br>
-        </section>
-        <% } %>
-        
-        <form action="/animes" method="GET">
-            <input type="text" name="keyword" autocomplete="off" 
-            placeholder="Search..." spellcheck="false"
-            pattern=".*[^ ].*" required>
-            <br>
-            <button type="submit"><img src="<%= search_img %>"></button>
-        </form>
-        
-        <% for (let i = 0; i < 1; i++) { %>
-            <% if (keyword) { %>
-                <h1>Search results for "<%= keyword %>"</h1>
-            <% } else { %>
-                <h1>Random</h1>
-            <% } %>
-            <div id="results" class="list">
-                <% animeData.animes.forEach(function(a) { %>
-                    <!-- <a href="">
-                        <p><%= a.node.title %></p>
-                        <img src="<%= a.node.main_picture.large %>">
-                    </a> -->
-                    <div>
-                        <p><%= a.node.title %></p>
-                        <!-- <a href="/animes/<%= a._id %>"><img src="<%= a.node.main_picture.large %>"></a> -->
-                        <form action="/animes/<%= a._id %>" method="POST"> 
-                            <!-- Hidden forms! -->
-                            <input type="hidden" name="anime" value="<%= a.node.title %>"> 
-                            <input type="hidden" name="animeID" value="<%= a.node.id %>">
-                            <input type="hidden" name="large" value="<%= a.node.main_picture.large %>">
-                            <input type="hidden" name="medium" value="<%= a.node.main_picture.medium %>">
-                            <button type="submit">
-                                <img src="<%= a.node.main_picture.large %>">
-                            </button>
-                        </form>
-                    </div>
-                <% }); %>
-            </div>
-        <% } %>
-
-        <div style="color: black; font-size: 1vh">
-            JSON Stringify:<br>
-            <%= JSON.stringify(animeData.animes.length) %>
-        </div>
-    </main>
-
-<%- include('../partials/footer.ejs') %>
+  <%- include('../partials/footer') %>

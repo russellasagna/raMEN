@@ -1,29 +1,86 @@
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/header') %>
 
-<main>
+<section id="show-page">
+  <div>Title: </div>
+  <div><%= anime.title %></div>
+  <div>Release Year: </div>
+  <div><%= anime.releaseYear %></div>
+  <div>Rating: </div>
+  <div><%= anime.mpaaRating %></div>
+  <div>Now Showing: </div>
+  <div><%= anime.nowShowing ? 'Yes' : 'Nope' %></div>
+  <div>Cast:</div>
+  <ul>
+    <%- anime.cast.map(c => 
+      `<li>${c.name} <small>${c.born.toLocaleDateString()}</small></li>`
+    ).join('') %>
+  </ul>
+</section>
+<form id="add-char-to-cast" action="/animes/<%= anime._id %>/characters" method="POST">
+  <select name="characterId">
+    <%- characters.map(c => 
+      `<option value="${c._id}">${c.name}</option>`
+    ).join('') %>
+  </select>
+  <button type="submit">Add to Cast</button>
+</form>
 
-    <div class="info">
-        <div>
-            <h2><%= anime.anime %></h2>
-            <img src="<%= anime.large %>">
-        </div>
-        <div>
-            <% if (user) { %>
-                <!-- <form action="/users/<%= user._id %>" method="POST">
-                    <input type="hidden" name="anime" value="<%= anime.anime %>">
-                    <input type="hidden" name="animeID" value="<%= anime.animeID %>">
-                    <input type="hidden" name="large" value="<%= anime.animeLarge %>">
-                    <input type="hidden" name="medium" value="<%= anime.animeMedium %>">
-                    <button type="submit">Add to Favorites</button>
-                </form> -->
+<br><br><h2>Comments</h2>
+
+<% if (user) { %>
+  <form id="add-comment-form" method="POST"
+    action="/animes/<%= anime._id %>/comments">
+    <label>Comment:</label>
+    <textarea name="content"></textarea>
+    <label>Rating:</label>
+    <select name="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5" selected>5</option>
+    </select>
+    <input type="submit" value="Add Comment">
+  </form>
+<% } %>
+
+<% if (anime.comments.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Comment</th>
+        <th>Rating</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let sum = 0; %>
+      <% anime.comments.forEach(function(c) { %>
+        <% sum += c.rating %>
+        <tr>
+          <td class="comment-user"><img src="<%= c.userAvatar %>" alt="avatar" referrerpolicy="no-referrer"><%= c.userName %></td>
+          <td><%= c.createdAt.toLocaleDateString() %></td>
+          <td><%= c.content %></td>
+          <td><%= c.rating %></td>
+          <td>
+            <% if ( user?._id.equals(c.user) ) { %>
+              <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                <button type="submit">X</button>
+              </form>
             <% } %>
-        </div>
-    </div>
-    <div style="color: black; font-size: 1vh">
-        JSON Stringify:<br>
-        <%= JSON.stringify( anime ) %>
-    </div>
-
-</main>
-
-<%- include('../partials/footer.ejs') %>
+          </td>
+        </tr>
+        <% }); %>
+        <tr>
+          <td colspan="3"></td>
+          <td><%= (sum / anime.comments.length).toFixed(2) %></td>
+        </tr>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Comments Yet</h5>
+<% } %>
+  
+<%- include('../partials/footer') %>

@@ -1,12 +1,11 @@
-var express = require('express');
-var router = express.Router();
-
+const express = require('express');
+const router = express.Router();
 const commentsCtrl = require('../controllers/comments');
 
-// All routes "start with" / (from server.js)
+// The starts with path is '/'
 
 // POST /animes/:id/comments
-router.post('/animes/:id/commments', commentsCtrl.create);
+router.post('/animes/:id/comments', commentsCtrl.create);
 // DELETE /comments/:id
 router.delete('/comments/:id', commentsCtrl.delete);
 
