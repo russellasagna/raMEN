@@ -15,7 +15,7 @@ nav > a {
   margin: 0 5px;
 }
 
-nav > a[href="/animes"] {
+nav > a[href="/"] {
   float: left;
 }
 
@@ -80,7 +80,7 @@ div.home > img {
 }
 
 /* search */
-form[action="/animes"] {
+form[action="/"] {
   position: relative;
   top: 4vh;
   right: 0.2vh;
@@ -89,7 +89,7 @@ form[action="/animes"] {
 }
 
 /* search */
-form[action="/animes"] > input {
+form[action="/"] > input {
   /* outline: none; */
   text-align: center;
   border: 0.1vh solid black;
@@ -100,7 +100,7 @@ form[action="/animes"] > input {
 }
 
 /* search */
-form[action="/animes"] > button {
+form[action="/"] > button {
   outline: none;
   background-color: white;
   border: 0px;
@@ -113,7 +113,7 @@ form[action="/animes"] > button {
 }
 
 /* search */
-form[action="/animes"] > button > img {
+form[action="/"] > button > img {
   width: 2vh;
   height: 2vh;
   user-select: none;

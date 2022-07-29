@@ -1,40 +1,17 @@
-
-
 var express = require('express');
 var router = express.Router();
-const passport = require('passport');
-
 const animesCtrl = require('../controllers/animes');
+const isLoggedIn = require('../config/auth');
 
-// All routes "start with" / (from server.js)
+// All routes "start with" /animes (from server.js)
 
-/* GET animes/home (index functionality) */
+// GET /animes (index functionality)
 router.get('/', animesCtrl.index);
-/* POST animes/anime (show functionality) */
-router.post('/anime', animesCtrl.show);
-
-// Google OAuth login route
-router.get('/auth/google', passport.authenticate(
-  'google',
-  {
-    scope: ['profile', 'email'],
-    // Optionally force pick account every time
-    // prompt: "select_account"
-  }
-));
-// Google OAuth callback route
-router.get('/oauth2callback', passport.authenticate(
-  'google',
-  {
-    successRedirect: '/',
-    failureRedirect: '/'
-  }
-));
-// Google OAuth logout route
-router.get('/logout', function(req, res){
-  req.logout(function() {
-    res.redirect('/');
-  });
-});
+// GET /animes/:id (show functionality)
+router.get('/:id', animesCtrl.show);
+// GET /animes/new (new functionality)
+// router.get('/new', /*isLoggedIn,*/ animesCtrl.new);
+// POST /animes (create functionality)
+router.post('/', /*isLoggedIn,*/ animesCtrl.create);
 
 module.exports = router;

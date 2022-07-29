@@ -7,15 +7,17 @@ var session = require('express-session');
 var passport = require('passport');
 var methodOverride = require('method-override');
 
+// Load the secrets in the .env module
 require('dotenv').config();
-
+// Connect to our database (line of code must be AFTER the above - .env)
 require('./config/database');
-// new code below
+// Configue passport
 require('./config/passport');
 
-var animesRouter = require('./routes/animes');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var animesRouter = require('./routes/animes');
+var commentsRouter = require('./routes/comments');
+// var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -27,24 +29,37 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
+
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Custom middleware to add the logged in user
+// to the locals object so that we can access
+// user within EVERY template we render without
+// having to pass user: req.user from the controller
 app.use(function (req, res, next) {
   res.locals.user = req.user;
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(methodOverride('_method'));
+// Middleware to protect routes
+const isLoggedIn = require('./config/auth');
 
-app.use('/', animesRouter);
-app.use('/index', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', indexRouter);
+app.use('/animes', animesRouter);
+// app.use('/users', usersRouter);
+// The starts with path for a related-resource,
+// comments, varies, thus we cannot specify
+// a starts with path
+app.use('/', isLoggedIn, commentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

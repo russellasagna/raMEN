@@ -14,7 +14,7 @@
         </section>
         <% } %>
         
-        <form action="/" method="GET">
+        <form action="/animes" method="GET">
             <input type="text" name="keyword" autocomplete="off" 
             placeholder="Search..." spellcheck="false"
             pattern=".*[^ ].*" required>
@@ -36,9 +36,10 @@
                     </a> -->
                     <div>
                         <p><%= a.node.title %></p>
-                        <form action="/anime" method="POST">
+                        <!-- <a href="/animes/<%= a._id %>"><img src="<%= a.node.main_picture.large %>"></a> -->
+                        <form action="/animes/<%= a._id %>" method="POST"> 
                             <!-- Hidden forms! -->
-                            <input type="hidden" name="anime" value="<%= a.node.title %>">
+                            <input type="hidden" name="anime" value="<%= a.node.title %>"> 
                             <input type="hidden" name="animeID" value="<%= a.node.id %>">
                             <input type="hidden" name="large" value="<%= a.node.main_picture.large %>">
                             <input type="hidden" name="medium" value="<%= a.node.main_picture.medium %>">
