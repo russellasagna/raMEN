@@ -3,7 +3,7 @@ var router = express.Router();
 
 // All routes "start with" /index (from server.js)
 
-router.get('', function(req, res, next) {
+router.get('/', function(req, res, next) {
     res.render('index', {});
 });
 

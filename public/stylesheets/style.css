@@ -25,6 +25,22 @@ nav > a[href="/users"] {
   float: right;
 }
 
+/* log in */
+nav > a[href="/auth/google"] {
+  position: relative;
+  bottom: 26px;
+}
+
+/* log out avatar */
+nav > span > a > img {
+  width: 40px;
+  border-radius: 40px;
+  position: relative;
+  bottom: 1vh;
+  left: 0.5vh;
+  float: right;
+}
+
 a {
   color: white;
   text-shadow: -1px 2px 0.2em black, -2px 0px 0.1em black;
@@ -41,20 +57,20 @@ main { /* landing page container */
   text-align: center;
 }
 
-main > h1 { /* landing page container */
+main > h1 {
   font-size: 3vh;
   margin: 0;
-  padding-left: 2.5vh;
   padding-top: 1vh;
   background-color: black;
   color: white;
 }
 
+/* logo */
 div.home {
   text-align: center;
-
 }
 
+/* logo */
 div.home > img {
   position: relative;
   top: 1vh;
@@ -63,6 +79,7 @@ div.home > img {
   border-radius: 20vh;
 }
 
+/* search */
 form[action="/"] {
   position: relative;
   top: 4vh;
@@ -71,6 +88,7 @@ form[action="/"] {
   margin-bottom: 2vh;
 }
 
+/* search */
 form[action="/"] > input {
   /* outline: none; */
   text-align: center;
@@ -81,6 +99,7 @@ form[action="/"] > input {
   font-size: 2vh;
 }
 
+/* search */
 form[action="/"] > button {
   outline: none;
   background-color: white;
@@ -93,6 +112,7 @@ form[action="/"] > button {
   left: 17.7vh;
 }
 
+/* search */
 form[action="/"] > button > img {
   width: 2vh;
   height: 2vh;
@@ -101,6 +121,7 @@ form[action="/"] > button > img {
   position:static;
 }
 
+/* anime search results */
 div.list {
   display: flex;
   flex-direction: row;
@@ -112,6 +133,7 @@ div.list {
   padding-bottom: 5vh;
 }
 
+/* anime search results */
 div.list > div > p {
   text-align: center;
   font-size: 2vh;
@@ -120,15 +142,17 @@ div.list > div > p {
   user-select: none;
 }
 
+/* anime search results */
 div.list > div > form > button {
   background: none;
   border: none;
 }
 
+/* anime search results */
 div.list > div > form > button > img {
   width: 50vh;
   height: 50vh;
-  margin: 0 5vh;
+  margin: 0 3vh 0 5vh;
   
   /* text-align: center; */
   /* vertical-align: middle; */
@@ -139,18 +163,32 @@ div.list > div > form > button > img:hover {
   box-shadow: 0px 0px 5vh white;
 }
 
+div.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  background-color: black;
+  color: white;
+  padding-bottom: 5vh;
+}
+
+div.info > div > h2 {
+  margin: 0;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
 .login {
   display: inline;
   height: 16px;
 }
 
 .login img {
-  height: 13px;
+  height: 40px;
   position: relative;
-  top: 2px;
-  left: -2px;
-}
-
-div.info {
-  display: flex;
+  top: 15px;
+  left: 10px;
 }

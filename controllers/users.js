@@ -1,10 +1,10 @@
 const User = require('../models/user');
 
 module.exports = {
-    index,
+    show,
 };
 
-function index(req, res, next) {
+function show(req, res, next) {
     res.render('users/home', {
         
     });

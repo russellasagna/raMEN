@@ -3,7 +3,9 @@ var router = express.Router();
 
 const usersCtrl = require('../controllers/users');
 
-/* GET users listing. */
-router.get('/', usersCtrl.index);
+// All routes "start with" /user (from server.js)
+
+/* GET user (show functionality) */
+router.get('/:id', usersCtrl.show);
 
 module.exports = router;

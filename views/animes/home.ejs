@@ -4,9 +4,15 @@
         <div class="home">
             <img src="<%= image %>">
         </div>
-        <br>
         
-        
+        <% if (!user) { %>
+        <br><br>
+        <section>
+            Welcome to raMEN!<br>
+            Use the search bar to find your favorite anime!<br>
+            <br><strong>Log in to save anime to your Favorites!</strong><br>
+        </section>
+        <% } %>
         
         <form action="/" method="GET">
             <input type="text" name="keyword" autocomplete="off" 
@@ -15,8 +21,6 @@
             <br>
             <button type="submit"><img src="<%= search_img %>"></button>
         </form>
-    
-        
         
         <% for (let i = 0; i < 1; i++) { %>
             <% if (keyword) { %>
@@ -34,8 +38,8 @@
                         <p><%= a.node.title %></p>
                         <form action="/anime" method="POST">
                             <!-- Hidden forms! -->
-                            <input type="hidden" name="title" value="<%= a.node.title %>">
-                            <input type="hidden" name="titleID" value="<%= a.node.id %>">
+                            <input type="hidden" name="anime" value="<%= a.node.title %>">
+                            <input type="hidden" name="animeID" value="<%= a.node.id %>">
                             <input type="hidden" name="large" value="<%= a.node.main_picture.large %>">
                             <input type="hidden" name="medium" value="<%= a.node.main_picture.medium %>">
                             <button type="submit">

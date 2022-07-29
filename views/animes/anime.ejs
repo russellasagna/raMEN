@@ -1,11 +1,29 @@
 <%- include('../partials/header.ejs') %>
 
 <main>
-    <img src="<%= animeLarge %>">
+
+    <div class="info">
+        <div>
+            <h2><%= anime %></h2>
+            <img src="<%= animeLarge %>">
+        </div>
+        <div>
+            <% if (user) { %>
+                <form action="/users/<%= user._id %>" method="POST">
+                    <input type="hidden" name="anime" value="<%= anime %>">
+                    <input type="hidden" name="animeID" value="<%= animeID %>">
+                    <input type="hidden" name="large" value="<%= animeLarge %>">
+                    <input type="hidden" name="medium" value="<%= animeMedium %>">
+                    <button type="submit">Add to Favorites</button>
+                </form>
+            <% } %>
+        </div>
+    </div>
     <div style="color: black; font-size: 1vh">
         JSON Stringify:<br>
         <%= JSON.stringify( animeLarge ) %>
     </div>
+
 </main>
 
 <%- include('../partials/footer.ejs') %>
