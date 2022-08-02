@@ -14,7 +14,7 @@ module.exports = {
 
 function index(req, res) {
   Anime.find({}, function (err, animes) {
-    res.render('animes/index', { title: 'All Animes', animes });
+    res.render('animes/index', { title: 'All Animes', image: 'images/raMEN.png', animes });
   });
 }
 
@@ -36,7 +36,32 @@ function show(req, res) {
 }
 
 function newAnime(req, res) {
-  res.render('animes/new', { title: 'Add Anime' });
+  // fetch data
+  const keyword = req.query.keyword;
+  // if (!username) return res.render('index', {userData: null});
+  const options = {
+      headers: {
+          "X-MAL-CLIENT-ID": process.env.MAL_CLIENT_ID,
+      },
+  }
+  let animeData;
+  fetch(`${rootURL}`, options)
+      .then(res => res.json())
+      .then(animes => {
+          animeData = animes;
+          return fetch(`${rootURL}/anime?q=${keyword}&limit=50`, options);
+      })
+      .then(res => res.json())
+      .then(animes => {
+          animeData.animes = animes.data;
+          // render view
+          res.render('animes/new', {
+              title: "raMEN",
+              search_img: 'images/magnifying_glass.svg',
+              keyword: keyword,
+              animeData
+          });
+      });
 }
 
 function create(req, res) {

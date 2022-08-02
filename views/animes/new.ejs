@@ -1,22 +1,66 @@
 <%- include('../partials/header') %>
+<main>
+
+<form action="/animes/new" method="GET">
+  <input type="text" name="keyword" autocomplete="off" 
+  placeholder="Search..." spellcheck="false"
+  pattern=".*[^ ].*" required>
+  <br>
+  <button type="submit"><img src="<%= search_img %>"></button>
+</form>
+
+<% for (let i = 0; i < 1; i++) { %>
+  <% if (keyword) { %>
+      <h1>Search results for "<%= keyword %>"</h1>
+  <% } else { %>
+      <h1>Random</h1>
+  <% } %>
+  <div id="results" class="list">
+      <% animeData.animes.forEach(function(a) { %>
+          <!-- <a href="">
+              <p><%= a.node.title %></p>
+              <img src="<%= a.node.main_picture.large %>">
+          </a> -->
+          <div>
+              <p><%= a.node.title %></p>
+              <form action="/anime" method="POST">
+                  <!-- Hidden forms! -->
+                  <input type="hidden" name="anime" value="<%= a.node.title %>">
+                  <input type="hidden" name="animeID" value="<%= a.node.id %>">
+                  <input type="hidden" name="large" value="<%= a.node.main_picture.large %>">
+                  <input type="hidden" name="medium" value="<%= a.node.main_picture.medium %>">
+                  <button type="submit">
+                      <img src="<%= a.node.main_picture.large %>">
+                  </button>
+              </form>
+          </div>
+      <% }); %>
+  </div>
+<% } %>
 
 <form id="new-form" action="/animes" method="POST">
   <label>Title:</label>
   <input type="text" name="title">
-  <label>Release Year:</label>
+  <br>
+  <label>Aired:</label>
   <input type="text" name="releaseYear">
-  <label>MPAA Rating</label>
+  <br>
+  <label>Rating:</label>
   <select name="mpaaRating">
     <option value="G">G</option>
     <option value="PG">PG</option>
     <option value="PG-13">PG-13</option>
     <option value="R">R</option>
   </select>
-  <label>Cast (separate actors with commas):</label>
+  <br>
+  <label>Characters:</label>
   <input type="text" name="cast">
-  <label>Now Showing:</label>
+  <br>
+  <label>Streaming:</label>
   <input type="checkbox" name="nowShowing" checked>
+  <br>
   <input type="submit" value="Add Anime">
 </form>
 
+</main>
 <%- include('../partials/footer') %>
