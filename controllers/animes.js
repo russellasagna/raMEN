@@ -38,13 +38,16 @@ function show(req, res) {
 async function newAnime(req, res) {
   // fetch data
   const keyword = req.query.keyword;
+  const animeID = req.query.animeID;
+  const animeFields = req.query.animeFields;
   // if (!username) return res.render('index', {userData: null});
   const options = {
       headers: {
           "X-MAL-CLIENT-ID": process.env.MAL_CLIENT_ID,
       },
   }
-  let fields = "id,title,main_picture,alternative_titles";
+  let fields = "id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics";
+                //"id,title,main_picture,alternative_titles";
                 // + "start_date,end_date,synopsis,mean,rank,"
                 // + "popularity,num_list_users,num_scoring_users,"
                 // + "nsfw,created_at,updated_at,media_type,status,"
@@ -54,14 +57,19 @@ async function newAnime(req, res) {
                 // + "studios,statistics";
   // Using async/await
   const animeData = await fetch(`${rootURL}/anime?q=${keyword}&limit=50`, options).then(res => res.json());
-  // const animeDetails = await fetch(`${rootURL}/anime/${animeData.node.}`, options).then(res => res.json());
+  const animeDetails = await fetch(`${rootURL}/anime/${animeID}?fields=${animeFields}`, options).then(res => res.json());
+  const animeTest = await fetch(`${rootURL}/anime/30749?fields=start_date`, options).then(res => res.json());
   res.render('animes/new', {
     title: 'raMEN',
     image: 'images/raMEN.png',
     search_img: 'images/magnifying_glass.svg',
     keyword: keyword,
+    animeID: animeID,
+    animeFields: animeFields,
     animeData,
-    // animeDetails,
+    animeDetails, // testing
+    animeTest,
+    fields: fields
   });
 }
 
