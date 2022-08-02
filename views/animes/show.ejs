@@ -42,6 +42,7 @@
     </select>
     <input type="submit" value="Add Comment">
   </form>
+  
 <% } %>
 
 <% if (anime.comments.length) { %>
@@ -68,6 +69,11 @@
             <% if ( user?._id.equals(c.user) ) { %>
               <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
                 <button type="submit">X</button>
+              </form>
+              <form action="/comments/<%= c._id %>?_method=PUT" method="POST">
+                <!-- Value attribute is being set to the comment's current text -->
+                <input name="text" value="<%= c.text %>">
+                <button type="submit">Edit</button>
               </form>
             <% } %>
           </td>
