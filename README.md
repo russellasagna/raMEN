@@ -35,4 +35,6 @@ After logging in, you'll be able to make contributions!
 - Add a favorites function
 - See the average rating of each anime
 - See the anime titles grouped in sections, sorted by filters
+- Use fields in URL from API for accurate anime details
 - Use a larger, custom scroll bar for the search results
+- Prevent adding duplicate anime

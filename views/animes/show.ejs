@@ -2,15 +2,15 @@
 
 <main>
 <section id="show-page">
-  <div>Title: </div>
+  <h2>Title: </h2>
   <div><%= anime.title %></div>
-  <div>Release Year: </div>
+  <h2>Release Year: </h2>
   <div><%= anime.releaseYear %></div>
-  <div>Rating: </div>
+  <h2>Rating: </h2>
   <div><%= anime.mpaaRating %></div>
-  <div>Now Showing: </div>
+  <h2>Now Showing: </h2>
   <div><%= anime.nowShowing ? 'Yes' : 'Nope' %></div>
-  <div>Cast:</div>
+  <h2>Cast:</h2>
   <ul>
     <%- anime.cast.map(c => 
       `<li>${c.name} <small>${c.born.toLocaleDateString()}</small></li>`
@@ -26,7 +26,7 @@
   <button type="submit">Add to Cast</button>
 </form>
 
-<br><br><h2>Comments</h2>
+<br><h2>Comments</h2>
 
 <% if (user) { %>
   <form id="add-comment-form" method="POST"
@@ -47,6 +47,7 @@
 <% } %>
 
 <% if (anime.comments.length) { %>
+  <hr>
   <table>
     <thead>
       <tr>
@@ -68,13 +69,16 @@
           <td><%= c.rating %></td>
           <td>
             <% if ( user?._id.equals(c.user) ) { %>
-              <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
-                <button type="submit">X</button>
-              </form>
-              <form action="/comments/<%= c._id %>?_method=PUT" method="POST">
-                <input name="text" value="<%= c.text %>">
-                <button type="submit">Edit</button>
-              </form>
+              <div class="comment">
+                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                  <button type="submit">X</button>
+                </form>
+                <!-- edit -->
+                <form action="/comments/<%= c._id %>?_method=PUT" method="POST">
+                  <input name="text" value="<%= c.text %>">
+                  <button type="submit">Edit</button>
+                </form>
+              </div>
             <% } %>
           </td>
         </tr>

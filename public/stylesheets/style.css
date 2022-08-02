@@ -210,6 +210,24 @@ h3 {
   padding: 2vh;
 }
 
+div.comment > form {
+  display: inline-block;
+}
+
+table {
+  display: inline-block;
+}
+
+ul {
+  list-style-type: none;
+  position: relative;
+  right: 3vh;
+}
+
+td {
+  width: 20vh;
+}
+
 .login {
   display: inline;
   height: 16px;
