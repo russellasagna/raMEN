@@ -24,7 +24,7 @@ const commentSchema = new Schema({
 });
 
 const animeSchema = new Schema({
-  title: String,
+  title: {type: String},
   releaseYear: {
     type: Number,
     // releaseYear must not exist
