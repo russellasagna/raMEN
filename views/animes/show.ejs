@@ -1,5 +1,6 @@
 <%- include('../partials/header') %>
 
+<main>
 <section id="show-page">
   <div>Title: </div>
   <div><%= anime.title %></div>
@@ -30,8 +31,8 @@
 <% if (user) { %>
   <form id="add-comment-form" method="POST"
     action="/animes/<%= anime._id %>/comments">
-    <label>Comment:</label>
-    <textarea name="content"></textarea>
+    <label>Comment:</label><br>
+    <textarea name="content"></textarea><br>
     <label>Rating:</label>
     <select name="rating">
       <option value="1">1</option>
@@ -39,7 +40,7 @@
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5" selected>5</option>
-    </select>
+    </select><br>
     <input type="submit" value="Add Comment">
   </form>
   
@@ -88,5 +89,7 @@
 <% } else { %>
   <h5>No Comments Yet</h5>
 <% } %>
+</main>
+  
   
 <%- include('../partials/footer') %>

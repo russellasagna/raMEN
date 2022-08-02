@@ -24,6 +24,11 @@
               <input type="hidden" name="animeID" value="<%= a.node.id %>">
               <input type="hidden" name="animeFields" value="<%= fields %>">
               <input type="hidden" name="title" value="<%= a.node.title %>">
+              <input type="hidden" name="releaseYear" value="2022">
+              <input type="hidden" name="mpaaRating" value="PG-13">
+              <input type="hidden" name="nowShowing" value="true">
+              <!-- cast bug: value must be blank -->
+              <input type="hidden" name="cast" value="">
               <input type="hidden" name="large" value="<%= a.node.main_picture.large %>">
               <input type="hidden" name="medium" value="<%= a.node.main_picture.medium %>">
               <button type="submit">
@@ -41,30 +46,6 @@
   <%= JSON.stringify(animeDetails) %>
 </div>
 <br>
-
-<form id="new-form" action="/animes" method="POST">
-  <label>Title:</label>
-  <input type="text" name="title">
-  <br>
-  <label>Aired:</label>
-  <input type="text" name="releaseYear">
-  <br>
-  <label>Rating:</label>
-  <select name="mpaaRating">
-    <option value="G">G</option>
-    <option value="PG">PG</option>
-    <option value="PG-13">PG-13</option>
-    <option value="R">R</option>
-  </select>
-  <br>
-  <label>Characters:</label>
-  <input type="text" name="cast">
-  <br>
-  <label>Streaming:</label>
-  <input type="checkbox" name="nowShowing" checked>
-  <br>
-  <input type="submit" value="Add Anime">
-</form>
 
 </main>
 <%- include('../partials/footer') %>

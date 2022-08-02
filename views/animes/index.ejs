@@ -6,8 +6,7 @@
     <% animes.forEach(function(a) { %>
       <div>
         <p><%= a.title %></p>
-        <p><%= a.releaseYear %></p>
-        <a href="/animes/<%= a._id %>">Details</a><br><br>
+        <a href="/animes/<%= a._id %>"><img src="<%= a.large %>" alt="Details"><br></a><br><br>
       </div>
     <% }); %>
   </div>

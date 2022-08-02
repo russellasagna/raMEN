@@ -44,7 +44,9 @@ const animeSchema = new Schema({
   // to use when populating the cast property
   cast: [{type: Schema.Types.ObjectId, ref: 'Character'}],
   nowShowing: Boolean,
-  comments: [commentSchema]
+  comments: [commentSchema],
+  large: String,
+  medium: String,
 }, {
   timestamps: true
 });
