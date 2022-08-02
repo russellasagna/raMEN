@@ -16,30 +16,27 @@
       <h1>Random</h1>
   <% } %>
   <div id="results" class="list">
-    <% animeData.data.forEach(function(a) { %>
-      <div>
-          <p><%= a.node.title %></p>
-          <form action="/anime" method="POST">
-              <!-- Hidden forms! -->
-              <input type="hidden" name="title" value="<%= a.node.title %>">
-              <input type="hidden" name="animeID" value="<%= a.node.id %>">
-              <input type="hidden" name="large" value="<%= a.node.main_picture.large %>">
-              <input type="hidden" name="medium" value="<%= a.node.main_picture.medium %>">
-              <button type="submit">
-                  <img src="<%= a.node.main_picture.large %>">
-              </button>
-          </form>
-      </div>
-  <% }); %>
+      <% animeData.animes.forEach(function(a) { %>
+          <!-- <a href="">
+              <p><%= a.node.title %></p>
+              <img src="<%= a.node.main_picture.large %>">
+          </a> -->
+          <div>
+              <p><%= a.node.title %></p>
+              <form action="/anime" method="POST">
+                  <!-- Hidden forms! -->
+                  <input type="hidden" name="title" value="<%= a.node.title %>">
+                  <input type="hidden" name="animeID" value="<%= a.node.id %>">
+                  <input type="hidden" name="large" value="<%= a.node.main_picture.large %>">
+                  <input type="hidden" name="medium" value="<%= a.node.main_picture.medium %>">
+                  <button type="submit">
+                      <img src="<%= a.node.main_picture.large %>">
+                  </button>
+              </form>
+          </div>
+      <% }); %>
   </div>
 <% } %>
-
-<br>
-<div style="color: black; font-size: 1vh">
-  JSON Stringify:<br>
-  <%= JSON.stringify(animeData.data[0].node.id) %>
-</div>
-<br>
 
 <form id="new-form" action="/animes" method="POST">
   <label>Title:</label>

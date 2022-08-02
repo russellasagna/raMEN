@@ -35,7 +35,7 @@ function show(req, res) {
     });
 }
 
-function newAnime(req, res) {
+async function newAnime(req, res) {
   // fetch data
   const keyword = req.query.keyword;
   // if (!username) return res.render('index', {userData: null});
@@ -44,24 +44,25 @@ function newAnime(req, res) {
           "X-MAL-CLIENT-ID": process.env.MAL_CLIENT_ID,
       },
   }
-  let animeData;
-  fetch(`${rootURL}`, options)
-      .then(res => res.json())
-      .then(animes => {
-          animeData = animes;
-          return fetch(`${rootURL}/anime?q=${keyword}&limit=50`, options);
-      })
-      .then(res => res.json())
-      .then(animes => {
-          animeData.animes = animes.data;
-          // render view
-          res.render('animes/new', {
-              title: "raMEN",
-              search_img: 'images/magnifying_glass.svg',
-              keyword: keyword,
-              animeData
-          });
-      });
+  let fields = "id,title,main_picture,alternative_titles";
+                // + "start_date,end_date,synopsis,mean,rank,"
+                // + "popularity,num_list_users,num_scoring_users,"
+                // + "nsfw,created_at,updated_at,media_type,status,"
+                // + "genres,my_list_status,num_episodes,start_season,"
+                // + "broadcast,source,average_episode_duration,rating,"
+                // + "pictures,background,related_anime,related_manga,recommendations,"
+                // + "studios,statistics";
+  // Using async/await
+  const animeData = await fetch(`${rootURL}/anime?q=${keyword}&limit=50`, options).then(res => res.json());
+  // const animeDetails = await fetch(`${rootURL}/anime/${animeData.node.}`, options).then(res => res.json());
+  res.render('animes/new', {
+    title: 'raMEN',
+    image: 'images/raMEN.png',
+    search_img: 'images/magnifying_glass.svg',
+    keyword: keyword,
+    animeData,
+    // animeDetails,
+  });
 }
 
 function create(req, res) {
