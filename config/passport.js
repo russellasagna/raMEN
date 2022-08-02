@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 passport.use(
   new GoogleStrategy(
-    // Configuartion object
+    // Configuration object
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET,
@@ -35,7 +35,7 @@ passport.use(
         });
         return cb(null, user);
       } catch (err) {
-        // An error occured
+        // An error occurred
         return cb(err);
       }
     }
