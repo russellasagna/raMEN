@@ -71,6 +71,8 @@ main > img {
   margin: 5vh 0;
 }
 
+/* ADD ANIME *//* ADD ANIME *//* ADD ANIME */
+
 /* anime listing */
 div.list {
   display: flex;
@@ -86,7 +88,7 @@ div.list {
 
 /* anime listing */
 div.list > div {
-  margin: 0 5vh;
+  margin: 0 4vh;
 }
 
 div.list > div > p {
@@ -107,7 +109,6 @@ div.list > div > form > button {
 div.list > div > form > button > img {
   width: 50vh;
   height: 50vh;
-  margin: 0 3vh 0 5vh;
   
   /* text-align: center; */
   /* vertical-align: middle; */
@@ -185,6 +186,8 @@ form[action="/animes/new"] > button > img {
   position:static;
 }
 
+/* ADD CHARACTER *//* ADD CHARACTER *//* ADD CHARACTER */
+
 article, h3 {
   margin: 0;
   background-color: black;
@@ -195,11 +198,17 @@ article {
   padding-bottom: 1vh;
 }
 
+/* MISCELLANEOUS *//* MISCELLANEOUS *//* MISCELLANEOUS */
+
+h1, h2 {
+  margin: 0;
+  color: white;
+  background-color: black;
+}
+
 h3 {
   padding: 2vh;
 }
-
-
 
 .login {
   display: inline;

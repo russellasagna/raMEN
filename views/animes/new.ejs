@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
 <main>
-<br><br><br>
+<h1>Anime Search</h1>
+<br><br>
 <form action="/animes/new" method="GET">
   <!-- input bug: doesn't allow 1-2 characters -->
   <input type="text" name="keyword" autocomplete="off" 
@@ -12,9 +13,9 @@
 
 <% for (let i = 0; i < 1; i++) { %>
   <% if (keyword) { %>
-      <h1>Search results for "<%= keyword %>"</h1>
+      <h2>Search results for "<%= keyword %>"</h2>
   <% } else { %>
-      <h1>Random</h1>
+      <h2>Random</h2>
   <% } %>
   <div id="results" class="list">
     <% animeData.data.forEach(function(a) { %>
@@ -40,13 +41,6 @@
   <% }); %>
   </div>
 <% } %>
-
-<br>
-<div style="color: black; font-size: 1vh">
-  JSON Stringify:<br>
-  <%= JSON.stringify(animeDetails) %>
-</div>
-<br>
 
 </main>
 <%- include('../partials/footer') %>

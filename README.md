@@ -1,6 +1,6 @@
 # raMEN
 
-A lightweight social network for sharing and discussing anime. The landing page features all anime added by the users. Details can be viewed upon clicking one. Logged in users can contribute new anime and characters, as well as post comments.
+A lightweight social network for sharing and discussing anime. The landing page features all anime added by the users. Details can be viewed upon clicking one. Logged in users can contribute new anime and characters, as well as post comments. Users can then attached the added characters to the current list of animes.
 
 # Screenshots
 
