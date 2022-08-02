@@ -62,7 +62,7 @@ async function newAnime(req, res) {
   res.render('animes/new', {
     title: 'raMEN',
     image: 'images/raMEN.png',
-    search_img: 'images/magnifying_glass.svg',
+    search_img: '/images/magnifying_glass.svg',
     keyword: keyword,
     animeID: animeID,
     animeFields: animeFields,

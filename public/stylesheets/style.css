@@ -185,6 +185,20 @@ form[action="/animes/new"] > button > img {
   position:static;
 }
 
+article, h3 {
+  margin: 0;
+  background-color: black;
+  color: white;
+}
+
+article {
+  padding-bottom: 1vh;
+}
+
+h3 {
+  padding: 2vh;
+}
+
 
 
 .login {

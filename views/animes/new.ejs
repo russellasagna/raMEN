@@ -1,7 +1,8 @@
 <%- include('../partials/header') %>
 <main>
-
+<br><br><br>
 <form action="/animes/new" method="GET">
+  <!-- input bug: doesn't allow 1-2 characters -->
   <input type="text" name="keyword" autocomplete="off" 
   placeholder="Search..." spellcheck="false"
   pattern=".*[^ ].*" required>

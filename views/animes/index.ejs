@@ -2,6 +2,13 @@
 
 <main>
   <img src="<%= image %>">
+  <% if (!user) { %>
+    <section>
+        Welcome to raMEN!<br>
+        <strong>Log in to contribute and comment!</strong>
+        <br><br><br>
+    </section>
+  <% } %>
   <div id="results" class="list">
     <% animes.forEach(function(a) { %>
       <div>
